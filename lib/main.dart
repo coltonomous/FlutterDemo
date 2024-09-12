@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 void main() {
   runApp(const MyApp());
@@ -31,12 +32,39 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  int axisElements = 3;
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+  List<String> rowLetters = [];
+  List<String> columnLetters = [];
+  List<Object> initData = []; // Initial pull from db; comes after starting letters defined
+  
+  void initAxis(){
+    // Reset letters
+    rowLetters = [];
+    columnLetters = [];
+
+    // TODO: Allow certain characters/ combinations by game difficulty
+    var chars = 'abcdefghijklmnopqrstuvwxyz';
+
+    for(var i = 0; i < axisElements; i++){
+      var rowLetter = _generateRandomString(1, chars);
+      chars = chars.replaceAll(rowLetter, ''); // TODO: Allow option for alliterative names
+
+      var columnLetter = _generateRandomString(1, chars);
+      chars = chars.replaceAll(columnLetter, '');
+
+      rowLetters.add(rowLetter);
+      columnLetters.add(columnLetter);
+    }
+
+    setState(() {});
+
+    // TODO: Make initial api pull using these letters
+  }
+
+  // Helper function to generate randomized string using supplied characters
+  String _generateRandomString(int len, String chars) {
+    return List.generate(len, (index) => chars[Random().nextInt(chars.length)]).join();
   }
 
   @override
@@ -53,20 +81,19 @@ class _MyHomePageState extends State<MyHomePage> {
           // wireframe for each widget.
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+            Text(
+              'Rows: $rowLetters',
             ),
             Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+              'Columns: $columnLetters',
             ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+        onPressed: initAxis,
+        tooltip: 'Start',
+        child: const Icon(Icons.refresh),
       ),
     );
   }
