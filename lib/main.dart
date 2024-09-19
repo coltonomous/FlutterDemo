@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 
+import './components/game_board.dart';
+
 void main() {
-  runApp(const MyApp());
+  runApp(const App());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class App extends StatelessWidget {
+  const App({super.key});
 
   // This widget is the root of your application.
   @override
@@ -17,21 +19,21 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 87, 153, 89)),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Celebrity Game Demo'),
+      home: const MainView(title: 'Celebrity Game Demo'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class MainView extends StatefulWidget {
+  const MainView({super.key, required this.title});
 
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<MainView> createState() => _MainViewState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MainViewState extends State<MainView> {
   int axisElements = 3;
 
   List<String> rowLetters = [];
@@ -47,10 +49,10 @@ class _MyHomePageState extends State<MyHomePage> {
     var chars = 'abcdefghijklmnopqrstuvwxyz';
 
     for(var i = 0; i < axisElements; i++){
-      var rowLetter = _generateRandomString(1, chars);
+      var rowLetter = generateRandomString(1, chars);
       chars = chars.replaceAll(rowLetter, ''); // TODO: Allow option for alliterative names
 
-      var columnLetter = _generateRandomString(1, chars);
+      var columnLetter = generateRandomString(1, chars);
       chars = chars.replaceAll(columnLetter, '');
 
       rowLetters.add(rowLetter);
@@ -63,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   // Helper function to generate randomized string using supplied characters
-  String _generateRandomString(int len, String chars) {
+  String generateRandomString(int len, String chars) {
     return List.generate(len, (index) => chars[Random().nextInt(chars.length)]).join();
   }
 
@@ -76,17 +78,9 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Center(
         child: Column(
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'Rows: $rowLetters',
-            ),
-            Text(
-              'Columns: $columnLetters',
-            ),
+            GameBoard(axisElements, rowLetters, columnLetters),
           ],
         ),
       ),
