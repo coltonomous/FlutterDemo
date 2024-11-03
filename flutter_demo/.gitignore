@@ -1,0 +1,4 @@
+server/configs/credentials.js
+server/node_modules
+
+client/build
