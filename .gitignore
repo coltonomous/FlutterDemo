@@ -1,0 +1,6 @@
+server/configs/credentials.js
+server/node_modules
+client/build
+.vscode
+
+package-lock.json

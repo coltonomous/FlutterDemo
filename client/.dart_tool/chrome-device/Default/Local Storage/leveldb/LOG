@@ -1,0 +1,9 @@
+2024/08/18-17:38:20.354 541c Reusing MANIFEST C:\Users\colto\AppData\Local\Temp\flutter_tools.6845a5c6\flutter_tools_chrome_device.a35eceb4\Default\Local Storage\leveldb/MANIFEST-000001
+2024/08/18-17:38:20.358 541c Recovering log #3
+2024/08/18-17:38:20.360 541c Reusing old log C:\Users\colto\AppData\Local\Temp\flutter_tools.6845a5c6\flutter_tools_chrome_device.a35eceb4\Default\Local Storage\leveldb/000003.log 
+2024/08/18-17:39:48.117 541c Level-0 table #5: started
+2024/08/18-17:39:48.120 541c Level-0 table #5: 77115 bytes OK
+2024/08/18-17:39:48.122 541c Delete type=0 #3
+2024/08/18-17:48:53.716 4e30 Level-0 table #7: started
+2024/08/18-17:48:53.718 4e30 Level-0 table #7: 65085 bytes OK
+2024/08/18-17:48:53.720 4e30 Delete type=0 #4
