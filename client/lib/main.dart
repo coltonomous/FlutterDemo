@@ -46,7 +46,8 @@ class _MainViewState extends State<MainView> {
     columnLetters = [];
 
     // TODO: Allow certain characters/ combinations by game difficulty
-    var chars = 'abcdefghijklmnopqrstuvwxyz';
+    // var chars = 'abcdefghijklmnopqrstuvwxyz';
+    var chars = 'abcdefghijklmnopqrstuvwyz';
 
     for(var i = 0; i < axisElements; i++){
       var rowLetter = generateRandomString(1, chars);
@@ -80,7 +81,10 @@ class _MainViewState extends State<MainView> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            GameBoard(axisElements, rowLetters, columnLetters),
+            FractionallySizedBox(child: 
+              GameBoard(rowLetters, columnLetters),
+              widthFactor: 0.5,
+            )
           ],
         ),
       ),
